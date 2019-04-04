@@ -1,4 +1,4 @@
-package com.soft1721.jianyue.api.service.impl;
+package com.soft1721.jianyue.api.util;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.PutObjectResult;

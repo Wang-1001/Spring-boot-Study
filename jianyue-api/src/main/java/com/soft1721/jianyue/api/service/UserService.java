@@ -22,14 +22,22 @@ public interface UserService {
     int signIn(UserDTO userDTO);
 
 
-    /**
+   /* *//**
      * 根据用户ID获取用户信息
      *
      * @param id
      * @return
-     */
-    User getUserById(Integer id);
+     *//*
+    User getUserById(Integer id);*/
 
+    /**
+     * 根据id查找用户
+     *
+     * @param id
+     * @return
+     */
+
+    User getUserById(int id);
 
    /* User getUserById(long id);*/
 
@@ -40,4 +48,12 @@ public interface UserService {
      * @return boolean
      */
     void updateUser(User user);
+
+
+    /**
+     * 用户注册方法
+     * @param userDTO
+     * @return int
+     */
+    void signUp(UserDTO userDTO);
 }
