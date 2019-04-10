@@ -124,6 +124,23 @@ public class UserController {
         }
     }
 
+    /*@PostMapping(value = "/check")
+    public ResponseResult checkVerifyCode(@RequestParam("mobile") String mobile, @RequestParam("verifyCode") String verifyCode) {
+        String code = null;
+        try{
+            code=redisService.get(mobile).toString();
+        }catch (NullPointerException e){
+            return ResponseResult.error(StatusConst.VERIFYCODE_TIMEOUT,MsgConst.VERIFYCODE_TIMEOUT);
+        }
+        System.out.println(code + "---");
+        System.out.println(verifyCode);
+        if (code.equals(verifyCode)) {
+            return ResponseResult.success();
+        } else {
+            return ResponseResult.error(StatusConst.VERIFYCODE_ERROR, MsgConst.VERIFYCODE_ERROR);
+        }
+
+    }*/
 
     @PostMapping(value = "/sign_up")
     public ResponseResult signUp(@RequestBody UserDTO userDTO) {

@@ -70,4 +70,9 @@ public class StringUtil {
         }
         return stringBuilder.toString();
     }
+    public static void main(String[] args) {
+        String pwdword=StringUtil.getBase64Encoder("222");
+        System.out.println(pwdword);
+    }
+
 }
