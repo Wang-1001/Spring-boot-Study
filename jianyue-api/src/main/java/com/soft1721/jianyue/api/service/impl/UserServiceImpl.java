@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updatePassword(User user) {
+        userMapper.update(user);
+    }
+
+    @Override
     public void signUp(UserDTO userDTO) {
         User user1 = new User();
         user1.setMobile(userDTO.getMobile());

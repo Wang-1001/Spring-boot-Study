@@ -1,5 +1,6 @@
 package com.soft1721.jianyue.api.service.impl;
 
+import com.soft1721.jianyue.api.entity.Article;
 import com.soft1721.jianyue.api.entity.vo.ArticleVO;
 import com.soft1721.jianyue.api.mapper.ArticleMapper;
 import com.soft1721.jianyue.api.mapper.ImgMapper;
@@ -30,5 +31,22 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.getArticleById(aId);
     }
 
+
+
+    @Override
+    public void insertArticle(Article article) {
+        articleMapper.insertArticle(article);
+
+    }
+
+
+    @Override
+    public List<ArticleVO> getArtcleByUId(int uId) {
+        List<ArticleVO> articles=articleMapper.getArticleByUId(uId);
+        for (ArticleVO articleVO:articles){
+            articleVO.setImgs(imgMapper.selectImgsByAId(articleVO.getId()));
+        }
+        return articles;
+    }
 
 }

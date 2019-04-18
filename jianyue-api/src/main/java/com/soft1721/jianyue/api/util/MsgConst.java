@@ -11,5 +11,7 @@ public class MsgConst {
     public static final String VERIFYCODE_TIMEOUT = "验证码过期";
     public static final String FOLLOWED="已关注";
     public static final String NO_FOLLOWED="已取消关注";
+    public static final String LIKE="已喜欢";
+    public static final String NO_LIKE="已取消喜欢";
 
 }

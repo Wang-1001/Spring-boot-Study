@@ -49,6 +49,8 @@ public interface UserService {
      */
     void updateUser(User user);
 
+    void updatePassword(User user);
+
 
     /**
      * 用户注册方法

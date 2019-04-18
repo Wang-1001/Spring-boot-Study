@@ -17,18 +17,7 @@ public interface UserMapper {
     @Select("SELECT * FROM t_user WHERE mobile = #{mobile} ")
     User getUserByMobile(String mobile);
 
-    /*@Results({
-            @Result(property = "id", column = "id"),
-            @Result(property = "mobile", column = "mobile"),
-            @Result(property = "password", column = "password"),
-            @Result(property = "nickname", column = "nickname"),
-            @Result(property = "avatar", column = "avatar"),
-            @Result(property = "regtime", column = "regtime"),
-            @Result(property = "token", column = "token"),
-            @Result(property = "status", column = "status")
-    })
-    @Select("SELECT * FROM t_user WHERE id = #{id} ")
-    User getUserById(Integer userId);*/
+
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "mobile", column = "mobile"),
@@ -47,21 +36,15 @@ public interface UserMapper {
     void update(User user);
 
 
+
+    @Update("UPDATE t_user SET password=#{password} WHERE id =#{id}")
+    void updatePassword(User user);
+
+
     @Insert("INSERT INTO t_user(mobile,password,nickname,avatar,regtime,status)" +
             " VALUES(#{mobile}, #{password}, #{nickname},#{avatar},#{regtime},#{status}) ")
     void insert(User user);
 
 
-
-
-
-
-
-
- /*   @Select("SELECT * FROM t_user WHERE id = #{id} ")
-    User getUserById(Long id);*/
-
-//    @Update("UPDATE t_user SET avatar=#{avatar} WHERE id =#{id}")
-//    void updateUser(User user);
 
 }

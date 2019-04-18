@@ -85,11 +85,8 @@ public class UserController {
         User user = userService.getUserById(id);
         return ResponseResult.success(user);
     }
-    /*@RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public ResponseResult getUserId(@PathVariable("id") int id){
-        User user=userService.getUserById(id);
-        return ResponseResult.success(user);
-    }*/
+
+
 
     @PutMapping("/nickname")
     public void updateAvatar(@RequestBody String renickname,int id){
@@ -97,6 +94,15 @@ public class UserController {
         user.setNickname(renickname);
         userService.updateUser(user);
     }
+     @PutMapping("/password")
+     public void updataPassword(@RequestBody String repassword , int id){
+        User user = userService.getUserById(id);
+
+         user.setPassword(StringUtil.getBase64Encoder(repassword));
+        userService.updatePassword(user);
+     }
+
+
 
     @PostMapping(value = "/verify")
     public ResponseResult getVerifyCode(@RequestParam("mobile") String mobile) {
@@ -124,23 +130,7 @@ public class UserController {
         }
     }
 
-    /*@PostMapping(value = "/check")
-    public ResponseResult checkVerifyCode(@RequestParam("mobile") String mobile, @RequestParam("verifyCode") String verifyCode) {
-        String code = null;
-        try{
-            code=redisService.get(mobile).toString();
-        }catch (NullPointerException e){
-            return ResponseResult.error(StatusConst.VERIFYCODE_TIMEOUT,MsgConst.VERIFYCODE_TIMEOUT);
-        }
-        System.out.println(code + "---");
-        System.out.println(verifyCode);
-        if (code.equals(verifyCode)) {
-            return ResponseResult.success();
-        } else {
-            return ResponseResult.error(StatusConst.VERIFYCODE_ERROR, MsgConst.VERIFYCODE_ERROR);
-        }
 
-    }*/
 
     @PostMapping(value = "/sign_up")
     public ResponseResult signUp(@RequestBody UserDTO userDTO) {

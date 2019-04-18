@@ -11,5 +11,7 @@ public class StatusConst {
     public static final int VERIFYCODE_TIMEOUT = 7;
     public static final int FOLLOWED=8;
     public static final int NO_FOLLOWED=9;
+    public static final int LIKE=10;
+    public static final int NO_LIKE=11;
 
 }

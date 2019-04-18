@@ -1,13 +1,11 @@
 package com.soft1721.jianyue.api.controller;
 
+import com.soft1721.jianyue.api.entity.Article;
 import com.soft1721.jianyue.api.entity.Follow;
 import com.soft1721.jianyue.api.entity.Img;
 import com.soft1721.jianyue.api.entity.vo.ArticleVO;
 import com.soft1721.jianyue.api.entity.vo.CommentVO;
-import com.soft1721.jianyue.api.service.ArticleService;
-import com.soft1721.jianyue.api.service.CommentService;
-import com.soft1721.jianyue.api.service.FollowService;
-import com.soft1721.jianyue.api.service.ImgService;
+import com.soft1721.jianyue.api.service.*;
 import com.soft1721.jianyue.api.util.MsgConst;
 import com.soft1721.jianyue.api.util.ResponseResult;
 import org.springframework.web.bind.annotation.*;
@@ -54,4 +52,25 @@ public class ArticleController {
         return ResponseResult.success(map);
 
     }
+    @PostMapping("/add")
+    public ResponseResult postArticle(@RequestParam("uId") int uId,
+                                      @RequestParam("title") String title,
+                                      @RequestParam("content") String content) {
+        Article article = new Article();
+        article.setUId(uId);
+        article.setTitle(title);
+        article.setContent(content);
+        article.setCreateTime(new Date());
+        articleService.insertArticle(article);
+        //新增文章后，将获取到的自增主键返回给客户端，方便图片地址的写入
+        return ResponseResult.success(article.getId());
+    }
+
+    @GetMapping(value = "/user")
+    public ResponseResult getrticleByUId(@RequestParam("userId") int userId) {
+        List<ArticleVO> articleList = articleService.getArtcleByUId(userId);
+        return ResponseResult.success(articleList);
+    }
+
+
 }
